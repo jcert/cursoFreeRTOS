@@ -9,10 +9,14 @@ run ´source config´ everytime to get the path and needed env vars
 	[x] ESP8266_RTOS_SDK/ (setup faz)
 	[ ] xtensa-lx106-elf/
 
+## ferramentas ESP
+ - esptool
+ - make flash
+ - make monitor 
+
 ## TODO
 	exemplos/hook/
 	exemplos/queue_delay/
-	exemplos/sema_bin/
 	exemplos/software_timer/
 	exemplos/stream_buffer/
 	exemplos/task_notify/
