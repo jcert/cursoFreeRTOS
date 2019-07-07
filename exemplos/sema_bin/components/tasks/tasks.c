@@ -12,7 +12,7 @@
 
 extern SemaphoreHandle_t xSemaphoreBinary;
 
-#define USE_SEMA_BIN
+//#define USE_SEMA_BIN
 
 #ifndef USE_SEMA_BIN
 void xTask1(void *pvParameters){

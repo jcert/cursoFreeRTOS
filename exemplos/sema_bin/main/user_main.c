@@ -22,7 +22,7 @@
 
 SemaphoreHandle_t xSemaphoreBinary;
 
-
+#define LEDCOMMON 15
 #define STACK_SIZE 1024
 
 /******************************************************************************
@@ -51,6 +51,7 @@ void app_main(void)
   //bit mask of the pins that you want to set,e.g.GPIO15/16
   io_conf.pin_bit_mask  = 1ULL<<LED1; 
   io_conf.pin_bit_mask |= 1ULL<<LED2;
+  io_conf.pin_bit_mask |= 1ULL<<LEDCOMMON;
   //disable pull-down mode
   io_conf.pull_down_en = 0;
   //disable pull-up mode
@@ -58,6 +59,7 @@ void app_main(void)
   //configure GPIO with the given settings
   gpio_config(&io_conf);
   
+  gpio_set_level(LEDCOMMON,0);
   printf("inicio\n");
 
   xReturned = xTaskCreate(xTask1, "Task1",  STACK_SIZE, NULL, configMAX_PRIORITIES - 1,NULL);

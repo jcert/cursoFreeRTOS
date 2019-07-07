@@ -25,9 +25,11 @@
 //void __attribute__((weak)) xTask_period8(){};
 //void __attribute__((weak)) xTask_period16(){};
 
+#define LEDCOMMON 15
+
 SemaphoreHandle_t xSemaphoreCounting;
 QueueHandle_t xQueuePinosLED;
-uint8_t led_list[3] = {12,13,15};
+uint8_t led_list[3] = {12,13,14};
 
 
 #define STACK_SIZE 1024
@@ -59,6 +61,7 @@ void app_main(void)
   io_conf.pin_bit_mask  = 1ULL<<led_list[0]; 
   io_conf.pin_bit_mask |= 1ULL<<led_list[1];
   io_conf.pin_bit_mask |= 1ULL<<led_list[2];
+  io_conf.pin_bit_mask |= 1ULL<<LEDCOMMON;
   printf("%x",io_conf.pin_bit_mask);
   //disable pull-down mode
   io_conf.pull_down_en = 0;
@@ -67,6 +70,8 @@ void app_main(void)
   //configure GPIO with the given settings
   gpio_config(&io_conf);
   
+  gpio_set_level(LEDCOMMON,0);
+
   xQueuePinosLED = xQueueCreate(3, sizeof(uint8_t) );
   //se ele não criou a fila, fica travado nisto 
   while(xQueuePinosLED == NULL){
